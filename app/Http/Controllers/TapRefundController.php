@@ -50,13 +50,13 @@ class TapRefundController extends Controller
             // Store in refunds table
             Refund::create([
                 'charge_id'  => $chargeId,
-                'refund_id'  => $refundResponse->id ?? null,
+                'refund_id'  => $refundResponse['id'] ?? null,
                 'amount'     => $request->input('amount'),
                 'currency'   => $payment->currency,
                 'description' => $request->input('description'),
                 'reason'     => $request->input('reason'),
                 'status'     => $status,
-                'response'   => json_encode($refundResponse),
+                'response'   => $refundResponse,
             ]);
 
             // (Optional) Update payment status if needed
